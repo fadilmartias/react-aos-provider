@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Base
+   ========================================================================== */
+.aos {
+    transition-duration: 600ms;
+    transition-timing-function: ease-out-cubic;
+    backface-visibility: hidden;
+}
+
+/* ==========================================================================
+   Easing map (setara data-aos-easing di lib aos)
+   ========================================================================== */
+.aos-ease-linear {
+    transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+}
+
+.aos-ease-ease {
+    transition-timing-function: ease;
+}
+
+.aos-ease-ease-in {
+    transition-timing-function: ease-in;
+}
+
+.aos-ease-ease-out {
+    transition-timing-function: ease-out;
+}
+
+.aos-ease-ease-in-out {
+    transition-timing-function: ease-in-out;
+}
+
+.aos-ease-ease-in-back {
+    transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.aos-ease-ease-out-back {
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.aos-ease-ease-in-out-back {
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.aos-ease-ease-in-sine {
+    transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.aos-ease-ease-out-sine {
+    transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.aos-ease-ease-in-out-sine {
+    transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.aos-ease-ease-in-quad {
+    transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.aos-ease-ease-out-quad {
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.aos-ease-ease-in-out-quad {
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.aos-ease-ease-in-cubic {
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.aos-ease-ease-out-cubic {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.aos-ease-ease-in-out-cubic {
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aos-ease-ease-in-quart {
+    transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.aos-ease-ease-out-quart {
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.aos-ease-ease-in-out-quart {
+    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ==========================================================================
+   Fade group
+   ========================================================================== */
+[class*='aos-fade'] {
+    opacity: 0;
+    transition-property: opacity, transform;
+}
+
+[class*='aos-fade'].aos-animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.aos-fade-up {
+    transform: translate3d(0, 40px, 0);
+}
+
+.aos-fade-down {
+    transform: translate3d(0, -40px, 0);
+}
+
+.aos-fade-right {
+    transform: translate3d(-40px, 0, 0);
+}
+
+.aos-fade-left {
+    transform: translate3d(40px, 0, 0);
+}
+
+.aos-fade-up-right {
+    transform: translate3d(-40px, 40px, 0);
+}
+
+.aos-fade-up-left {
+    transform: translate3d(40px, 40px, 0);
+}
+
+.aos-fade-down-right {
+    transform: translate3d(-40px, -40px, 0);
+}
+
+.aos-fade-down-left {
+    transform: translate3d(40px, -40px, 0);
+}
+
+/* ==========================================================================
+   Zoom group
+   ========================================================================== */
+[class*='aos-zoom'] {
+    opacity: 0;
+    transition-property: opacity, transform;
+}
+
+[class*='aos-zoom'].aos-animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.aos-zoom-in {
+    transform: scale(0.6);
+}
+
+.aos-zoom-in-up {
+    transform: translate3d(0, 40px, 0) scale(0.6);
+}
+
+.aos-zoom-in-down {
+    transform: translate3d(0, -40px, 0) scale(0.6);
+}
+
+.aos-zoom-in-left {
+    transform: translate3d(40px, 0, 0) scale(0.6);
+}
+
+.aos-zoom-in-right {
+    transform: translate3d(-40px, 0, 0) scale(0.6);
+}
+
+.aos-zoom-out {
+    transform: scale(1.2);
+}
+
+.aos-zoom-out-up {
+    transform: translate3d(0, 40px, 0) scale(1.2);
+}
+
+.aos-zoom-out-down {
+    transform: translate3d(0, -40px, 0) scale(1.2);
+}
+
+.aos-zoom-out-left {
+    transform: translate3d(40px, 0, 0) scale(1.2);
+}
+
+.aos-zoom-out-right {
+    transform: translate3d(-40px, 0, 0) scale(1.2);
+}
+
+/* ==========================================================================
+   Slide group (tanpa fade, murni transform)
+   ========================================================================== */
+[class*='aos-slide'] {
+    transition-property: transform;
+    overflow: hidden;
+}
+
+[class*='aos-slide'].aos-animate {
+    transform: translate3d(0, 0, 0);
+}
+
+.aos-slide-up {
+    transform: translate3d(0, 100%, 0);
+}
+
+.aos-slide-down {
+    transform: translate3d(0, -100%, 0);
+}
+
+.aos-slide-right {
+    transform: translate3d(-100%, 0, 0);
+}
+
+.aos-slide-left {
+    transform: translate3d(100%, 0, 0);
+}
+
+/* ==========================================================================
+   Flip group
+   ========================================================================== */
+[class*='aos-flip'] {
+    transition-property: transform;
+}
+
+.aos-flip-left {
+    transform: perspective(2500px) rotateY(-100deg);
+}
+
+.aos-flip-left.aos-animate {
+    transform: perspective(2500px) rotateY(0);
+}
+
+.aos-flip-right {
+    transform: perspective(2500px) rotateY(100deg);
+}
+
+.aos-flip-right.aos-animate {
+    transform: perspective(2500px) rotateY(0);
+}
+
+.aos-flip-up {
+    transform: perspective(2500px) rotateX(-100deg);
+}
+
+.aos-flip-up.aos-animate {
+    transform: perspective(2500px) rotateX(0);
+}
+
+.aos-flip-down {
+    transform: perspective(2500px) rotateX(100deg);
+}
+
+.aos-flip-down.aos-animate {
+    transform: perspective(2500px) rotateX(0);
+}
+
+/* ==========================================================================
+   Aksesibilitas — matikan semua animasi kalau user minta reduced motion
+   ========================================================================== */
+/* @media (prefers-reduced-motion: reduce) {
+
+    .aos,
+    [class*="aos-fade"],
+    [class*="aos-zoom"],
+    [class*="aos-slide"],
+    [class*="aos-flip"] {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+} */
