@@ -37,4 +37,61 @@ describe('AOSProvider', () => {
         const el = screen.getByTestId('box');
         expect(el).toHaveClass('aos', 'aos-zoom-in');
     });
+
+    it('bypasses the configured offset for an element when disableOffset is set', () => {
+        const originalGetBoundingClientRect =
+            HTMLElement.prototype.getBoundingClientRect;
+        const originalScrollHeight = Object.getOwnPropertyDescriptor(
+            document.documentElement,
+            'scrollHeight',
+        );
+
+        // Simulate an element sitting right at the bottom edge of a tall
+        // page, well outside the 200px offset — but already partially in view.
+        HTMLElement.prototype.getBoundingClientRect = () =>
+            ({
+                top: 750,
+                bottom: 760,
+                left: 0,
+                right: 0,
+                width: 100,
+                height: 10,
+                x: 0,
+                y: 0,
+                toJSON: () => ({}),
+            }) as DOMRect;
+        Object.defineProperty(document.documentElement, 'scrollHeight', {
+            value: 5000,
+            configurable: true,
+        });
+        Object.defineProperty(window, 'innerHeight', {
+            value: 800,
+            configurable: true,
+        });
+
+        render(
+            <AOSProvider offset={200}>
+                <AOS animation="fade-up" data-testid="normal">
+                    normal
+                </AOS>
+                <AOS animation="fade-up" disableOffset data-testid="bypassed">
+                    bypassed
+                </AOS>
+            </AOSProvider>,
+        );
+
+        expect(screen.getByTestId('normal')).not.toHaveClass('aos-animate');
+        expect(screen.getByTestId('bypassed')).toHaveClass('aos-animate');
+
+        HTMLElement.prototype.getBoundingClientRect =
+            originalGetBoundingClientRect;
+
+        if (originalScrollHeight) {
+            Object.defineProperty(
+                document.documentElement,
+                'scrollHeight',
+                originalScrollHeight,
+            );
+        }
+    });
 });

@@ -2,7 +2,16 @@ import { useAOSContext } from './aos-provider';
 import type { AOSGlobalConfig, AOSResolvedConfig } from './aos-types';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
-export type UseAOSOptions = AOSGlobalConfig;
+export type UseAOSOptions = AOSGlobalConfig & {
+    /**
+     * Ignore the configured `offset` for this element only, so it animates
+     * as soon as any part of it enters the viewport instead of waiting for
+     * it to clear the offset margin. Useful for elements that can already
+     * be sitting at the bottom edge of the screen on load (e.g. a footer
+     * CTA) and should still play their animation without requiring a scroll.
+     */
+    disableOffset?: boolean;
+};
 
 interface UseAOSResult<T extends HTMLElement> {
     ref: (node: T | null) => void;
@@ -22,7 +31,9 @@ export function useAOS<T extends HTMLElement = HTMLDivElement>(
             easing: localOptions.easing ?? globalConfig.easing,
             once: localOptions.once ?? globalConfig.once,
             mirror: localOptions.mirror ?? globalConfig.mirror,
-            offset: localOptions.offset ?? globalConfig.offset,
+            offset: localOptions.disableOffset
+                ? 0
+                : (localOptions.offset ?? globalConfig.offset),
             disable: localOptions.disable ?? globalConfig.disable,
         }),
         [
@@ -33,6 +44,7 @@ export function useAOS<T extends HTMLElement = HTMLDivElement>(
             localOptions.once,
             localOptions.mirror,
             localOptions.offset,
+            localOptions.disableOffset,
             localOptions.disable,
         ],
     );

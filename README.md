@@ -80,10 +80,11 @@ function Card() {
 
 Accepts everything from `AOSProvider` (as per-element overrides) plus:
 
-| Prop        | Type                                                                        | Default     | Description                                 |
-| ----------- | --------------------------------------------------------------------------- | ----------- | ------------------------------------------- |
-| `animation` | `AOSAnimation`                                                              | `'fade-up'` | Animation preset, same names as `aos@2.3.1` |
-| `as`        | `'div' \| 'section' \| 'article' \| 'span' \| 'li' \| 'header' \| 'footer'` | `'div'`     | Wrapper element tag                         |
+| Prop            | Type                                                                        | Default     | Description                                                                                                                                                      |
+| --------------- | --------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `animation`     | `AOSAnimation`                                                              | `'fade-up'` | Animation preset, same names as `aos@2.3.1`                                                                                                                      |
+| `as`            | `'div' \| 'section' \| 'article' \| 'span' \| 'li' \| 'header' \| 'footer'` | `'div'`     | Wrapper element tag                                                                                                                                              |
+| `disableOffset` | `boolean`                                                                   | `false`     | Ignore the configured `offset` for this element only, so it animates as soon as any part of it enters the viewport instead of waiting to clear the offset margin |
 
 ### `useAOS(options)`
 

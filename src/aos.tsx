@@ -68,6 +68,7 @@ export function AOS({
     once,
     mirror,
     offset,
+    disableOffset,
     disable,
     className = '',
     style,
@@ -82,6 +83,7 @@ export function AOS({
         once,
         mirror,
         offset,
+        disableOffset,
         disable,
     });
     const Tag = as as React.ElementType;

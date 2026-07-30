@@ -25,11 +25,11 @@ import { AOSProvider } from 'react-aos-provider';
 import 'react-aos-provider/styles.css';
 
 export default function App() {
-  return (
-    <AOSProvider duration={800} easing="ease-out-cubic" once>
-      {/* rest of the app */}
-    </AOSProvider>
-  );
+    return (
+        <AOSProvider duration={800} easing="ease-out-cubic" once>
+            {/* rest of the app */}
+        </AOSProvider>
+    );
 }
 ```
 
@@ -57,13 +57,26 @@ import { AOS } from 'react-aos-provider';
 
 Key props:
 
-| Prop        | Type                                                                        | Default     | Notes                                                  |
-| ----------- | ---------------------------------------------------------------------------- | ----------- | ------------------------------------------------------- |
-| `animation` | see preset list below                                                        | `'fade-up'` | Same names as `aos@2.3.1` — safe to copy from old `data-aos` values |
-| `as`        | `'div' \| 'section' \| 'article' \| 'span' \| 'li' \| 'header' \| 'footer'` | `'div'`     | Pick the tag that's semantically correct for the content, not always `div` |
-| `duration`, `delay`, `easing`, `once`, `mirror`, `offset`, `disable` | — | inherited from `AOSProvider` | Per-element override; only set these if this element needs to differ from the page default |
+| Prop                                                                 | Type                                                                        | Default                      | Notes                                                                                                                                                         |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `animation`                                                          | see preset list below                                                       | `'fade-up'`                  | Same names as `aos@2.3.1` — safe to copy from old `data-aos` values                                                                                           |
+| `as`                                                                 | `'div' \| 'section' \| 'article' \| 'span' \| 'li' \| 'header' \| 'footer'` | `'div'`                      | Pick the tag that's semantically correct for the content, not always `div`                                                                                    |
+| `duration`, `delay`, `easing`, `once`, `mirror`, `offset`, `disable` | —                                                                           | inherited from `AOSProvider` | Per-element override; only set these if this element needs to differ from the page default                                                                    |
+| `disableOffset`                                                      | `boolean`                                                                   | `false`                      | Ignores the resolved `offset` for this element only — it animates as soon as any part of it enters the viewport instead of waiting to clear the offset margin |
 
 Any other prop (`id`, `onClick`, `aria-*`, etc.) passes straight through to the rendered element as normal HTML attributes.
+
+### When an element sits at the bottom edge on load
+
+If an element can already be partially visible at the bottom of the viewport on first paint (a footer CTA, a short page, a card near the fold) and the user wants it to animate immediately instead of waiting for the page to scroll it clear of the `offset` margin, reach for `disableOffset` rather than trying to tune `offset` down to `0` globally — `disableOffset` only affects that one element, leaving the rest of the page's timing untouched:
+
+```tsx
+<AOS animation="fade-up" disableOffset>
+    <FooterCTA />
+</AOS>
+```
+
+This works on `useAOS` too (`useAOS({ disableOffset: true })`) since `<AOS>` is just a thin wrapper around it.
 
 ### Animation presets
 
@@ -79,13 +92,13 @@ Use this instead of `<AOS>` when the animation needs conditional classes, a thir
 import { useAOS } from 'react-aos-provider';
 
 function Card() {
-  const { ref, isVisible } = useAOS<HTMLDivElement>({ offset: 120 });
+    const { ref, isVisible } = useAOS<HTMLDivElement>({ offset: 120 });
 
-  return (
-    <div ref={ref} className={isVisible ? 'is-visible' : ''}>
-      Custom animation driven by isVisible
-    </div>
-  );
+    return (
+        <div ref={ref} className={isVisible ? 'is-visible' : ''}>
+            Custom animation driven by isVisible
+        </div>
+    );
 }
 ```
 
@@ -95,16 +108,16 @@ function Card() {
 
 All of these are set once on `AOSProvider` as page/app-wide defaults, and any of them can be overridden per-element via `<AOS>` props or `useAOS(options)`:
 
-| Prop          | Type                                                            | Default             | Notes |
-| ------------- | ---------------------------------------------------------------- | -------------------- | ----- |
-| `duration`    | `number` (ms)                                                    | `600`                | |
-| `delay`       | `number` (ms)                                                    | `0`                  | |
-| `easing`      | one of the `AOSEasing` strings (`'ease-out-cubic'`, `'ease-in-back'`, …) | `'ease-out-cubic'`   | Same curve names as classic `aos` |
-| `once`        | `boolean`                                                        | `true`               | Set `false` if the element should re-animate every time it re-enters view |
-| `mirror`      | `boolean`                                                        | `false`              | Animates back out on scroll-up; only meaningful combined with `once: false` |
-| `offset`      | `number` (px)                                                    | `80`                 | Distance from the viewport edge that triggers the animation |
-| `disable`     | `boolean \| 'phone' \| 'tablet' \| 'mobile' \| (() => boolean)`  | `false`              | Use a predicate for custom breakpoints instead of guessing a media query |
-| `autoRefresh` | `(refresh: () => void) => void \| (() => void)`                 | —                    | Wire this to a router's navigation event so newly-rendered elements on route change get re-observed. Return a cleanup function if the subscription needs teardown. |
+| Prop          | Type                                                                     | Default            | Notes                                                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `duration`    | `number` (ms)                                                            | `600`              |                                                                                                                                                                    |
+| `delay`       | `number` (ms)                                                            | `0`                |                                                                                                                                                                    |
+| `easing`      | one of the `AOSEasing` strings (`'ease-out-cubic'`, `'ease-in-back'`, …) | `'ease-out-cubic'` | Same curve names as classic `aos`                                                                                                                                  |
+| `once`        | `boolean`                                                                | `true`             | Set `false` if the element should re-animate every time it re-enters view                                                                                          |
+| `mirror`      | `boolean`                                                                | `false`            | Animates back out on scroll-up; only meaningful combined with `once: false`                                                                                        |
+| `offset`      | `number` (px)                                                            | `80`               | Distance from the viewport edge that triggers the animation                                                                                                        |
+| `disable`     | `boolean \| 'phone' \| 'tablet' \| 'mobile' \| (() => boolean)`          | `false`            | Use a predicate for custom breakpoints instead of guessing a media query                                                                                           |
+| `autoRefresh` | `(refresh: () => void) => void \| (() => void)`                          | —                  | Wire this to a router's navigation event so newly-rendered elements on route change get re-observed. Return a cleanup function if the subscription needs teardown. |
 
 There is no public `AOS.refresh()`-style function to call manually (unlike classic `aos`) — `AOSProvider` already watches the DOM with a `MutationObserver`/`ResizeObserver`/scroll listener and re-evaluates automatically whenever content changes or the layout shifts. `autoRefresh` exists only for the one case that observer can't see coming: client-side route changes where a router swaps content without a full remount (e.g. wire it to `usePathname()` changes in Next.js, or a router's navigation event elsewhere). If a user migrating from `aos` asks "what replaces my `AOS.refresh()` calls after fetching data?", the answer is usually "nothing — it's automatic," not `autoRefresh`.
 
@@ -120,11 +133,11 @@ import { AOSProvider } from 'react-aos-provider';
 import 'react-aos-provider/styles.css';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <AOSProvider duration={800} once>
-      {children}
-    </AOSProvider>
-  );
+    return (
+        <AOSProvider duration={800} once>
+            {children}
+        </AOSProvider>
+    );
 }
 ```
 
@@ -132,14 +145,18 @@ export function Providers({ children }: { children: React.ReactNode }) {
 // app/layout.tsx — stays a Server Component
 import { Providers } from './providers';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <html lang="en">
+            <body>
+                <Providers>{children}</Providers>
+            </body>
+        </html>
+    );
 }
 ```
 
@@ -153,4 +170,5 @@ For route-change re-evaluation with the App Router, wire `autoRefresh` to `usePa
 - **"useAOS must be used within an AOSProvider" thrown**: the component calling `useAOS` (directly or via `<AOS>`) renders outside any `AOSProvider` ancestor — check the component tree, and on Next.js check the `'use client'` boundary is above both the provider and the consumer.
 - **Animation fires once then never again on repeat visits to the same section**: expected when `once: true` (the default). Set `once={false}` on the provider or the specific `<AOS>` element.
 - **Elements pop in already-visible on page load instead of animating**: usually means the element was already within `offset` px of the viewport on mount (before the user scrolls). Increase `offset` or accept that above-the-fold content animates immediately — this matches classic `aos` behavior too.
+- **An element near the bottom of the viewport won't animate until the user scrolls further than expected**: it's outside the `offset` margin even though part of it is already visible. If it should play as soon as any part of it is on screen, set `disableOffset` on that `<AOS>`/`useAOS` call instead of shrinking the page-wide `offset`.
 - **Works in dev, animations missing after `next build`**: almost always a missing `'use client'` directive that dev mode tolerated more loosely, or the stylesheet import living in a Server Component whose CSS side effect gets tree-shaken.
