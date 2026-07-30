@@ -1,6 +1,6 @@
 {
     "name": "react-aos-provider",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A lightweight, framework-agnostic AOS (Animate on Scroll) provider for React.",
     "type": "module",
     "main": "./dist/index.cjs",
