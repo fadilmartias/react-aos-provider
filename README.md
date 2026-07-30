@@ -89,6 +89,12 @@ Accepts everything from `AOSProvider` (as per-element overrides) plus:
 
 Returns `{ ref, isVisible }`. `ref` must be attached to the DOM node you want observed; `isVisible` reflects whether it currently satisfies the visibility criteria.
 
+## Using with a coding agent (Claude Code)
+
+This repo ships a [Claude Code](https://claude.com/claude-code) skill at [`.claude/skills/react-aos-provider/SKILL.md`](.claude/skills/react-aos-provider/SKILL.md) that teaches an agent how to install and wire up this package correctly (provider setup, the `<AOS>` component, the `useAOS` hook, Next.js `'use client'` boundaries, and common troubleshooting) — cloning this repo gets it for free.
+
+If you only installed the package via `npm install react-aos-provider` and don't have this repo checked out, copy that file into your own project at `.claude/skills/react-aos-provider/SKILL.md` and Claude Code will pick it up automatically.
+
 ## Development
 
 ```bash

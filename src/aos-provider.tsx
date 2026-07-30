@@ -6,7 +6,6 @@ import type {
 } from './aos-types';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import './aos.css';
 
 export type { AOSDisable, AOSEasing, AOSGlobalConfig } from './aos-types';
 
