@@ -26,7 +26,6 @@ interface AOSContextValue {
 
 const AOSContext = createContext<AOSContextValue | null>(null);
 
-// Definisikan tipe untuk properti yang diterima oleh Provider
 export type AOSProviderProps = AOSGlobalConfig & {
     children: ReactNode;
     autoRefresh?: (refresh: () => void) => void | (() => void);
@@ -77,7 +76,6 @@ export function AOSProvider({
             : undefined;
 
         return () => {
-            // Eksekusi cleanup jika autoRefresh me-return sebuah fungsi (contoh: router.on)
             if (typeof cleanupAutoRefresh === 'function') {
                 cleanupAutoRefresh();
             }

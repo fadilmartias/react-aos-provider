@@ -41,24 +41,14 @@ export interface AOSProps
             'children' | 'className' | 'style'
         > {
     children: React.ReactNode;
-    /** Jenis animasi, lengkap seperti data-aos di lib aos */
     animation?: AOSAnimation;
     easing?: AOSEasing;
     duration?: number;
     className?: string;
     style?: React.CSSProperties;
-    /** Elemen HTML pembungkus, default "div" */
     as?: 'div' | 'section' | 'article' | 'span' | 'li' | 'header' | 'footer';
 }
 
-/**
- * Komponen deklaratif — bungkus konten untuk animasi on-scroll.
- * Semua animasi dari lib aos@2.3.1 sudah tersedia lewat prop `animation`.
- *
- *   <AOS animation="flip-left" duration={800} easing="ease-out-back">
- *     <Card />
- *   </AOS>
- */
 export function AOS({
     children,
     animation = 'fade-up',

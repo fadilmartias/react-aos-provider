@@ -3,13 +3,6 @@ import type { AOSGlobalConfig, AOSResolvedConfig } from './aos-types';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
 export type UseAOSOptions = AOSGlobalConfig & {
-    /**
-     * Ignore the configured `offset` for this element only, so it animates
-     * as soon as any part of it enters the viewport instead of waiting for
-     * it to clear the offset margin. Useful for elements that can already
-     * be sitting at the bottom edge of the screen on load (e.g. a footer
-     * CTA) and should still play their animation without requiring a scroll.
-     */
     disableOffset?: boolean;
 };
 
