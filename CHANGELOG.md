@@ -1,5 +1,11 @@
 # react-aos-provider
 
+## 1.0.1
+
+### Patch Changes
+
+- Remove unnecessary comments; no functional change.
+
 ## 1.0.0
 
 ### Major Changes
