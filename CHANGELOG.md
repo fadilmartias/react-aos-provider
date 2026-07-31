@@ -1,5 +1,11 @@
 # react-aos-provider
 
+## 1.0.2
+
+### Patch Changes
+
+- Move the `aos.css` side-effect import from `AOSProvider` to the package entry point, and widen `<AOS as>` to accept any HTML element tag instead of a fixed list.
+
 ## 1.0.1
 
 ### Patch Changes

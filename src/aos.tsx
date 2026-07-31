@@ -46,7 +46,7 @@ export interface AOSProps
     duration?: number;
     className?: string;
     style?: React.CSSProperties;
-    as?: 'div' | 'section' | 'article' | 'span' | 'li' | 'header' | 'footer';
+    as?: keyof React.JSX.IntrinsicElements;
 }
 
 export function AOS({

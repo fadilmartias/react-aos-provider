@@ -1,3 +1,5 @@
+import './aos.css';
+
 export { AOS } from './aos';
 export type { AOSAnimation, AOSProps } from './aos';
 
