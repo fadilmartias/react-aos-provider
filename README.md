@@ -4,7 +4,7 @@
 [![CI](https://github.com/fadilmartias/react-aos-provider/actions/workflows/ci.yml/badge.svg)](https://github.com/fadilmartias/react-aos-provider/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/react-aos-provider.svg)](./LICENSE)
 
-A lightweight, dependency-free "Animate On Scroll" provider for React. No jQuery, no `aos.js` — just a `Provider`, a `<AOS>` component, and a `useAOS` hook, all built on `IntersectionObserver`.
+A lightweight, dependency-free "Animate On Scroll" provider for React. No jQuery, no `aos.js`, just a `Provider`, a `<AOS>` component, and a `useAOS` hook, all built on `IntersectionObserver`.
 
 ## Features
 
@@ -108,7 +108,7 @@ npm run typecheck    # tsc --noEmit
 
 ## Contributing
 
-Contributions are welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).
+Contributions are welcome, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
